@@ -1,0 +1,35 @@
+<br>
+<h3>Add Product</h3>
+
+<form [formGroup]="productAddForm" (ngSubmit)="add()">
+<div class="form-group">
+<input class="form-control" id="name" name="name" formControlName="name"  placeholder="Product Name">
+<div class="alert alert-danger" *ngIf="productAddForm.get('name').hasError('required')&&productAddForm.get('name').dirty">This branch is required</div>
+</div> 
+
+<div class="form-group">
+<input class="form-control" id="brand" name="brand" formControlName="brand" placeholder="Product Brand">
+<div class="alert alert-danger" *ngIf="productAddForm.get('brand').hasError('required')&&productAddForm.get('brand').dirty">Brand is required</div> 
+</div>
+
+<div class="form-group">
+<input class="form-control" id="price" name="price" formControlName="price" placeholder="Price "> 
+<div class="alert alert-danger" *ngIf="productAddForm.get('price').hasError('required')&&productAddForm.get('price').dirty">Price is required</div> 
+</div>
+
+<div class="form-group">
+<input class="form-control" id="imgUrl" name="imgUrl" formControlName="imgUrl" placeholder="Product Image">
+<div class="alert alert-danger" *ngIf="productAddForm.get('imgUrl').hasError('required')&&productAddForm.get('imgUrl').dirty">İmage is required</div>
+</div>
+
+<div class="form-group">
+<select formControlName="categoryId" required id="categoryId" name="categoryId " class="form-control">
+<option *ngFor="let category of categories" [value]="category.id" >{{category.name}}</option>
+</select>
+
+</div>
+
+<br>
+<button class="btn btn-primary" type="submit" [disabled]="productAddForm.invalid">Add Product</button>
+</form>
+

@@ -1,0 +1,29 @@
+<!--<h2 *ngIf="products else: noProducts">{{title}}</h2> --> 
+<app-category></app-category>
+<div class="form-group">
+  <input
+  class="form-control"
+  id="search"
+  placeholder="search product"
+  [(ngModel)]="args"
+  >
+</div>
+<ng-template #noProducts>
+    <div class="alert alert-warning" role="alert">
+        Product not fount in that categories:(
+      </div>
+</ng-template>
+
+<br>
+<div class="row">
+    <div *ngFor="let product of products | productFilter:args" class="card"  class="productBox">
+        <img class="card-img-top" [src]="product.imgUrl" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{product.name}}</h5>
+          <p class="card-text">Brand: {{product.brand}}</p>
+          <p class="card-text">Price: {{product.price | currency}}</p>
+          <a (click)="addToBasket(product)" class="btn btn-success">Add to Basket</a>
+        </div>
+      </div>
+
+</div>
